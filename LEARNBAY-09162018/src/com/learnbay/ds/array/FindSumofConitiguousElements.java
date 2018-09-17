@@ -3,8 +3,18 @@ package com.learnbay.ds.array;
 /**
  * @author n
  *  
- * Cadence algorithm
+ * Find maximum sum of sub-array
+ *  
+ * Brute force can be applied but it will be O(n2)
+ *  
+ * So applying Kadane's algorithm
  *
+ * Keep on adding the elements and check if sum > 0 then put it in a state . Compare it
+ * with subsequent states. The max value of the state is your answer 
+ * It is '7' in this case.
+ * 
+ * O(n) complexity
+ * 
  */
 public class FindSumofConitiguousElements {
 
@@ -26,6 +36,7 @@ public class FindSumofConitiguousElements {
 			 }
 		}
 		
+		System.out.println(maxSum);
 		
 	}
 	

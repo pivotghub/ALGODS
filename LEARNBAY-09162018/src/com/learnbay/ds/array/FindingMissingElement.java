@@ -1,13 +1,11 @@
 package com.learnbay.ds.array;
 
-import java.util.Arrays;
 
 /**
  * @author n
  * 
- * Find the missing element in an array
+ * Simple example to find the missing element in an array
  * 
- * Find the duplicate element in an array
  *
  */
 public class FindingMissingElement {
