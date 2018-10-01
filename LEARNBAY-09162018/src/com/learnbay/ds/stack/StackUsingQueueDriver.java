@@ -10,6 +10,7 @@ public class StackUsingQueueDriver {
 
 	public static void main(String[] args) {
 		
+		//One Queue
 		StackQ s = new StackQ();
 		s.push(1);
 		s.push(2);
@@ -29,6 +30,18 @@ public class StackUsingQueueDriver {
 		System.out.println(s);
 		s.pop();
 		System.out.println(s);
+		
+		
+		//Two Queues
+		StackUsingDualQueue sdq = new StackUsingDualQueue();
+		sdq.push(1);
+		sdq.push(2);
+		sdq.push(3);
+		System.out.println(sdq);
+		
+		sdq.pop();
+		System.out.println(sdq);
+		
 		
 	}
 
