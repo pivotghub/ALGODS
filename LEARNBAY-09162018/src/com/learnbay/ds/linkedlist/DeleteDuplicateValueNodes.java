@@ -1,16 +1,22 @@
 package com.learnbay.ds.linkedlist;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
  * @author n
  * 
- * https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list-in-reverse/problem
+ * Delete duplicate-value nodes from a sorted(ascending order) linkedlist
  * 
- * Print a reverse linkedlist
+ * https://www.hackerrank.com/challenges/delete-duplicate-value-nodes-from-a-sorted-linked-list/problem
+ * 
+ * @see DeleteDuplicateValueNodes#removeDuplicates(SinglyLinkedListNode)
  *
  */
-public class PrintinReverse {
+public class DeleteDuplicateValueNodes {
+	
 	static class SinglyLinkedListNode {
 		public int data;
 		public SinglyLinkedListNode next;
@@ -43,62 +49,52 @@ public class PrintinReverse {
 		}
 	}
 
-	public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep) {
+	public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter)
+			throws IOException {
 		while (node != null) {
-			System.out.print(node.data);
+			bufferedWriter.write(String.valueOf(node.data));
 
 			node = node.next;
 
 			if (node != null) {
-				System.out.print(sep);
+				bufferedWriter.write(sep);
 			}
 		}
 	}
 
-	// Complete the reversePrint function below.
+	// Complete the removeDuplicates function below.
 
 	/*
 	 * For your reference:
 	 *
 	 * SinglyLinkedListNode { int data; SinglyLinkedListNode next; }
-	 * 
-	 * HEAD -> 1 -> 2 -> 3 -> TAIL    to   HEAD -> 3 -> 2 -> 1 -> TAIL
 	 *
 	 */
-	static void reversePrint(SinglyLinkedListNode head) {
-
-		SinglyLinkedListNode current = head;
-		SinglyLinkedListNode temp = head;
-		SinglyLinkedListNode prev = null;
+	static SinglyLinkedListNode removeDuplicates(SinglyLinkedListNode head) {
 		
-		while(temp != null){
-			temp = current.next;
-			current.next = prev;
-			prev = current;
-			if(temp != null){
-				current = temp;
+		SinglyLinkedListNode ptr = head;
+		
+		while(ptr.next != null){
+			if(ptr.data == ptr.next.data){
+				ptr.next = ptr.next.next;
+			}
+			else{
+				ptr = ptr.next;
 			}
 		}
-		head = current;
-		print(head);
-	}
-
-	private static void print(SinglyLinkedListNode head) {
-
-		SinglyLinkedListNode node = head;
-			    while (node != null){
-			    	System.out.println(node.data);
-			        node = node.next;
-			    }
+		
+		return head;
 	}
 
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		int tests = scanner.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("D:\\brac.txt"));
+
+		int t = scanner.nextInt();
 		scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-		for (int testsItr = 0; testsItr < tests; testsItr++) {
+		for (int tItr = 0; tItr < t; tItr++) {
 			SinglyLinkedList llist = new SinglyLinkedList();
 
 			int llistCount = scanner.nextInt();
@@ -111,8 +107,13 @@ public class PrintinReverse {
 				llist.insertNode(llistItem);
 			}
 
-			reversePrint(llist.head);
+			SinglyLinkedListNode llist1 = removeDuplicates(llist.head);
+
+			printSinglyLinkedList(llist1, " ", bufferedWriter);
+			bufferedWriter.newLine();
 		}
+
+		bufferedWriter.close();
 
 		scanner.close();
 	}
