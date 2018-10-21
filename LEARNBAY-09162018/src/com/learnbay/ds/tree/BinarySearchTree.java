@@ -54,6 +54,31 @@ public class BinarySearchTree {
 				}
 			}
 		}
+		
+		
+		/**
+		 * 
+		 * FIND A NODE WITH VALUE.
+		 * 
+		 * @param node
+		 * @param val
+		 * @return Node
+		 */
+		public Node find(Node node, int val){
+			
+			Node cur = node;
+			
+			if(val != cur.val){
+				if(val < cur.val){
+					cur = cur.left;
+				}
+				else{
+					cur = cur.right;
+				}
+			}
+			return cur;
+		}
+		
 	
 	/**
 	 * @param args
